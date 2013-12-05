@@ -1,0 +1,23 @@
+{
+    "name": "san/report-bundle",
+    "type": "symfony-bundle",
+    "description": "Exercise platform report bundle",
+    "keywords": ["exercise", "platform", "report", "bundle"],
+    "homepage": "https://github.com/Exercise/SanReportBundle.git",
+    "license": "MIT",
+    "authors": [
+        { "name": "Alex Kovalevych", "email": "alexkovalevych@gmail.com" }
+    ],
+    "require": {
+        "san/user-list-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "San\\ReportBundle": "" }
+    },
+    "target-dir": "San/ReportBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
