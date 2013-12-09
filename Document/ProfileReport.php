@@ -2,6 +2,6 @@
 
 namespace San\ReportBundle\Document;
 
-use San\ReportBundle\Document\AbstractReport;
+use San\ReportBundle\Model\BaseProfileReport;
 
-class ProfileReport extends AbstractReport {}
+class ProfileReport extends BaseProfileReport {}

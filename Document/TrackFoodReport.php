@@ -2,4 +2,6 @@
 
 namespace San\ReportBundle\Document;
 
-class TrackFoodReport extends AbstractReport {}
+use San\ReportBundle\Model\TrackFoodReport as BaseTrackFoodReport;
+
+class TrackFoodReport extends BaseTrackFoodReport {}

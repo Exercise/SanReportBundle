@@ -2,4 +2,6 @@
 
 namespace San\ReportBundle\Document;
 
-class TrackGlucoseReport extends AbstractReport {}
+use San\ReportBundle\Model\TrackGlucoseReport as BaseTrackGlucoseReport;
+
+class TrackGlucoseReport extends BaseTrackGlucoseReport {}

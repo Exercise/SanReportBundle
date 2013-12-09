@@ -2,6 +2,6 @@
 
 namespace San\ReportBundle\Document;
 
-use San\ReportBundle\Document\AbstractReport;
+use San\ReportBundle\Model\TrackWeightReport as BaseTrackWeightReport;
 
-class TrackWeightReport extends AbstractReport {}
+class TrackWeightReport extends BaseTrackWeightReport {}

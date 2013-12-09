@@ -2,6 +2,6 @@
 
 namespace San\ReportBundle\Document;
 
-use San\ReportBundle\Document\AbstractReport;
+use San\ReportBundle\Model\ExercisedReport as BaseExercisedReport;
 
-class ExercisedReport extends AbstractReport {}
+class ExercisedReport extends BaseExercisedReport {}
