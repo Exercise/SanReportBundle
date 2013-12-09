@@ -22,7 +22,7 @@ class UserRegistrationReportCRUDController extends CRUDController
         $form = $this->createForm('report');
 
         return $this->render('SanReportBundle:Admin:report.html.twig', array(
-            'form' => $form->createView(),
+            'form'   => $form->createView(),
             'action' => 'list'
         ));
     }

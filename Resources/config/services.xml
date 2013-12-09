@@ -4,11 +4,16 @@
 
     <parameters>
         <parameter key="san.report_type.class">San\ReportBundle\Form\Type\ReportType</parameter>
+        <parameter key="san.filter_type.class">San\ReportBundle\Form\Type\FilterType</parameter>
     </parameters>
 
     <services>
         <service id="san.form.report_type" class="%san.report_type.class%">
             <tag name="form.type" alias="report" />
+        </service>
+
+        <service id="san.form.filter_type" class="%san.filter_type.class%">
+            <tag name="form.type" alias="filter" />
         </service>
 
         <service id="san.report_factory" class="San\ReportBundle\ReportFactory">

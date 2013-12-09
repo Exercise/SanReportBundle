@@ -7,13 +7,13 @@
         <discriminator-field name="type" fieldName="type" />
         <discriminator-map>
             <discriminator-mapping value="registration" class="San\ReportBundle\Document\UserRegistrationReport" />
-<!--             <discriminator-mapping value="active" class="San\ReportBundle\Document\ActiveUserReport" />
+            <discriminator-mapping value="active" class="San\ReportBundle\Document\ActiveUserReport" />
             <discriminator-mapping value="profile" class="San\ReportBundle\Document\ProfileReport" />
             <discriminator-mapping value="track_weight" class="San\ReportBundle\Document\TrackWeightReport" />
             <discriminator-mapping value="track_glucose" class="San\ReportBundle\Document\TrackGlucoseReport" />
             <discriminator-mapping value="track_food" class="San\ReportBundle\Document\TrackFoodReport" />
             <discriminator-mapping value="exercised" class="San\ReportBundle\Document\ExercisedReport" />
- -->        </discriminator-map>
+        </discriminator-map>
         <indexes>
             <index>
                 <key name="created" order="desc" />

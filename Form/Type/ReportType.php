@@ -17,7 +17,12 @@ class ReportType extends AbstractType
         $builder
             ->add('from', 'datetime')
             ->add('to', 'datetime')
-            ->add('filters', 'collection', array('type' => new FilterType()))
+            ->add('filters', 'collection', array(
+                'type'         => 'filter',
+                'allow_add'    => true,
+                'allow_delete' => true,
+            ))
+            ->add('submit', 'submit')
         ;
     }
 

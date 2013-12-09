@@ -11,18 +11,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
 class UserRegistrationReportAdmin extends Admin
 {
     /**
-     * {@inheritdoc}
-     */
-    // public function getTemplate($name)
-    // {
-    //     if ($name == 'edit') {
-    //         return 'SanEmailBundle:Admin/CRUD:email_edit.html.twig';
-    //     }
-
-    //     return parent::getTemplate($name);
-    // }
-
-    /**
      * @return array
      */
     public function getBatchActions()
