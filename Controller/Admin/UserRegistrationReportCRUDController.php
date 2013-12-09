@@ -21,7 +21,7 @@ class UserRegistrationReportCRUDController extends CRUDController
 
         $form = $this->createForm('report');
 
-        return $this->render($this->admin->getTemplate('list'), array(
+        return $this->render('SanReportBundle:Admin:report.html.twig', array(
             'form' => $form->createView(),
             'action' => 'list'
         ));
