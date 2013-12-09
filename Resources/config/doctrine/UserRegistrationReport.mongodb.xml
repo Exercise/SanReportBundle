@@ -7,12 +7,10 @@
         <indexes>
             <index>
                 <key name="created" order="desc" />
-                <key name="user" order="asc" />
             </index>
         </indexes>
         <field fieldName="id" id="true" />
         <field fieldName="created" type="date" />
-        <reference-one field="user" target-document="Application\UserBundle\Document\User" />
     </mapped-superclass>
 
 </doctrine-mongo-mapping>

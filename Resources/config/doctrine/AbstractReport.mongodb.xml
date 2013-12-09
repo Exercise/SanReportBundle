@@ -1,0 +1,29 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                    http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <document name="San\ReportBundle\Document\AbstractReport" collection="san_report" inheritance-type="SINGLE_COLLECTION">
+        <discriminator-field name="type" fieldName="type" />
+        <discriminator-map>
+            <discriminator-mapping value="registration" class="San\ReportBundle\Document\UserRegistrationReport" />
+<!--             <discriminator-mapping value="active" class="San\ReportBundle\Document\ActiveUserReport" />
+            <discriminator-mapping value="profile" class="San\ReportBundle\Document\ProfileReport" />
+            <discriminator-mapping value="track_weight" class="San\ReportBundle\Document\TrackWeightReport" />
+            <discriminator-mapping value="track_glucose" class="San\ReportBundle\Document\TrackGlucoseReport" />
+            <discriminator-mapping value="track_food" class="San\ReportBundle\Document\TrackFoodReport" />
+            <discriminator-mapping value="exercised" class="San\ReportBundle\Document\ExercisedReport" />
+ -->        </discriminator-map>
+        <indexes>
+            <index>
+                <key name="created" order="desc" />
+            </index>
+        </indexes>
+        <field fieldName="id" id="true" />
+        <field fieldName="created" type="date" />
+    </document>
+
+    <document name="San\ReportBundle\Document\UserRegistrationReport">
+    </document>
+
+</doctrine-mongo-mapping>
