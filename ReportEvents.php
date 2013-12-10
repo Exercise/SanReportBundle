@@ -7,6 +7,11 @@ final class ReportEvents
     /**
      * @var string
      */
+    const CREATE_REPORT = 'create.report';
+
+    /**
+     * @var string
+     */
     const ACTIVE_USER_REPORT = 'active.user.report';
 
     /**

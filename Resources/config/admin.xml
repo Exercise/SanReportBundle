@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="san.admin.report.class">San\ReportBundle\Admin\UserRegistrationReportAdmin</parameter>
+        <parameter key="san.admin.report.class">San\ReportBundle\Admin\ReportAdmin</parameter>
         <parameter key="san.admin.report.label">Registration report</parameter>
         <parameter key="san.admin.report.report_label">Reports</parameter>
     </parameters>
@@ -13,8 +13,8 @@
         <service id="san.admin.report" class="%san.admin.report.class%">
             <tag name="sonata.admin" manager_type="doctrine_mongodb" group="%san.admin.report.report_label%" label="%san.admin.report.label%"/>
             <argument />
-            <argument>San\ReportBundle\Document\UserRegistrationReport</argument>
-            <argument>SanReportBundle:Admin/UserRegistrationReportCRUD</argument>
+            <argument>San\ReportBundle\Document\Report</argument>
+            <argument>SanReportBundle:Admin/ReportCRUD</argument>
         </service>
 
     </services>

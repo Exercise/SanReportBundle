@@ -1,0 +1,17 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                    http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <document name="San\ReportBundle\Document\Report" collection="san_report">
+        <indexes>
+            <index>
+                <key name="created" order="desc" />
+            </index>
+        </indexes>
+        <field fieldName="id" id="true" />
+        <field fieldName="created" type="date" />
+        <field fieldName="type" type="string" />
+    </document>
+
+</doctrine-mongo-mapping>
