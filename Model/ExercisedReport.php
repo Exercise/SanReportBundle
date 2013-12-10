@@ -2,9 +2,6 @@
 
 namespace San\ReportBundle\Model;
 
-use San\ReportBundle\Document\AbstractReport;
+use San\ReportBundle\Model\AbstractReport;
 
-class ExercisedReport extends AbstractReport
-{
-    const EXERCISED_REPORT = 'exercised.report';
-}
+class ExercisedReport extends AbstractReport {}

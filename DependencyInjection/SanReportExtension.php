@@ -19,7 +19,6 @@ class SanReportExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('admin.xml');
         $loader->load('services.xml');
-        $container->getDefinition('san.report_factory')->replaceArgument(0, $config['filters']);
     }
 
     /**

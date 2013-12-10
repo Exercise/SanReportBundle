@@ -2,7 +2,6 @@
 
 namespace San\ReportBundle\Model;
 
-class UserRegistrationReport extends AbstractReport
-{
-    const USER_REGISTRATION_REPORT = 'user.registration.report';
-}
+use San\ReportBundle\Model\AbstractReport;
+
+class UserRegistrationReport extends AbstractReport {}

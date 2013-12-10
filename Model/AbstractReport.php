@@ -17,6 +17,11 @@ abstract class AbstractReport extends Event
      */
     protected $created;
 
+    /**
+     * @var \FOS\UserBundle\Model\UserInterface
+     */
+    protected $user;
+
     public function __construct()
     {
         $this->created = new \DateTime();
@@ -49,32 +54,39 @@ abstract class AbstractReport extends Event
     }
 
     /**
+     * @return \FOS\UserBundle\Model\UserInterface
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param UserInterface $user
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
      * @param  array  $filters
      */
-    // public function updateFilters(array $filters = null)
-    // {
-    //     if (!$filters) {
-    //         $filtersToUpdate = $this->getFilters();
-    //     }
-
-    //     $invalidFilters = array_diff($filtersToUpdate, $this->getFilters());
-    //     if (count($invalidFilters) > 0) {
-    //         throw new \InvalidArgumentException("This report doesn't have filters: %s", implode(', ', $invalidFilters));
-    //     }
-
-    //     foreach ($filtersToUpdate as $filter => $property) {
-    //         $value = $this->user->{sprintf('get%s', $property)}();
-    //         $this->{sprintf('set%s', $filter)}($value);
-    //     }
-    // }
+    public function updateFilters()
+    {
+        foreach ($this->getFilters() as $filter) {
+            $value = $this->user->{sprintf('get%s', $filter)}();
+            $this->{sprintf('set%s', $filter)}($value);
+        }
+    }
 
     /**
      * @return array
      */
-    // public function getFilters()
-    // {
-    //     return array(
-    //         'created' => 'createdAt',
-    //     );
-    // }
+    public function getFilters()
+    {
+        return array();
+    }
 }

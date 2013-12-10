@@ -5,6 +5,7 @@
     <parameters>
         <parameter key="san.report_type.class">San\ReportBundle\Form\Type\ReportType</parameter>
         <parameter key="san.filter_type.class">San\ReportBundle\Form\Type\FilterType</parameter>
+        <parameter key="san.report_subscriber.class">San\ReportBundle\EventListener\ReportSubscriber</parameter>
     </parameters>
 
     <services>
@@ -16,10 +17,11 @@
             <tag name="form.type" alias="filter" />
         </service>
 
-        <service id="san.report_factory" class="San\ReportBundle\ReportFactory">
-            <argument type="collection"></argument>
+        <service id="san.report_subscriber" class="%san.report_subscriber.class%">
+            <tag name="kernel.event_subscriber" />
             <argument type="service" id="doctrine.odm.mongodb.document_manager" />
         </service>
+
     </services>
 
 </container>

@@ -3,7 +3,7 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
                     http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
-    <mapped-superclass name="San\ReportBundle\Document\UserRegistrationReport" collection="san_report_user_registration" repository-class="San\ReportBundle\Document\UserRegistrationReportRepository">
+    <mapped-superclass name="San\ReportBundle\Document\UserRegistrationReport" collection="san_report" repository-class="San\ReportBundle\Document\UserRegistrationReportRepository">
         <indexes>
             <index>
                 <key name="created" order="desc" />

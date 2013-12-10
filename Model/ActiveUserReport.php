@@ -1,10 +1,7 @@
 <?php
 
-namespace Users\Sites\San\ReportBundle\Model;
+namespace San\ReportBundle\Model;
 
 use San\ReportBundle\Model\AbstractReport;
 
-class ActiveUserReport extends AbstractReport
-{
-    const ACTIVE_USER_REPORT = 'active.user.report';
-}
+class ActiveUserReport extends AbstractReport {}
