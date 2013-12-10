@@ -19,7 +19,7 @@ class UserRegistrationReportCRUDController extends CRUDController
             throw new AccessDeniedException();
         }
 
-        $form = $this->createForm('report');
+        $form = $this->createForm('plot_reports');
 
         return $this->render('SanReportBundle:Admin:report.html.twig', array(
             'form'   => $form->createView(),

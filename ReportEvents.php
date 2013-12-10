@@ -38,4 +38,20 @@ final class ReportEvents
      * @var string
      */
     const USER_REGISTRATION_REPORT = 'user.registration.report';
+
+    /**
+     * @return array
+     */
+    public static function getReports()
+    {
+        return array(
+            self::ACTIVE_USER_REPORT       => 'Active user report',
+            self::EXERCISED_REPORT         => 'Exercised report',
+            self::PROFILE_REPORT           => 'Profile report',
+            self::TRACK_FOOD_REPORT        => 'Track food report',
+            self::TRACK_GLUCOSE_REPORT     => 'Track glucose report',
+            self::TRACK_WEIGHT_REPORT      => 'Track weight report',
+            self::USER_REGISTRATION_REPORT => 'User registration report',
+        );
+    }
 }

@@ -2,12 +2,12 @@
 
 namespace San\ReportBundle\Form\Type;
 
-use San\ReportBundle\ReportEvents;
+use San\ReportBundle\Form\Type\FilterType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ReportType extends AbstractType
+class PlotType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,9 +15,14 @@ class ReportType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', 'choice', array(
-                'choices' => ReportEvents::getReports()
+            ->add('from', 'datetime')
+            ->add('to', 'datetime')
+            ->add('reports', 'collection', array(
+                'type'         => 'report',
+                'allow_add'    => true,
+                'allow_delete' => true,
             ))
+            ->add('submit', 'submit')
         ;
     }
 
@@ -26,6 +31,6 @@ class ReportType extends AbstractType
      */
     public function getName()
     {
-        return 'report';
+        return 'plot_reports';
     }
 }
