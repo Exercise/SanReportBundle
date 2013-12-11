@@ -7,6 +7,7 @@
         <parameter key="san.report_form_type.class">San\ReportBundle\Form\Type\ReportType</parameter>
         <parameter key="san.report_subscriber.class">San\ReportBundle\EventListener\ReportSubscriber</parameter>
         <parameter key="san.report.class">San\ReportBundle\Document\Report</parameter>
+        <parameter key="san.plot_service.class">San\ReportBundle\PlotService</parameter>
     </parameters>
 
     <services>
@@ -20,6 +21,10 @@
 
         <service id="san.report_subscriber" class="%san.report_subscriber.class%">
             <tag name="kernel.event_subscriber" />
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+        </service>
+
+        <service id="san.plot_service" class="%san.plot_service.class%">
             <argument type="service" id="doctrine.odm.mongodb.document_manager" />
         </service>
 

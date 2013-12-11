@@ -3,7 +3,7 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
                     http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
-    <document name="San\ReportBundle\Document\Report" collection="san_report">
+    <document name="San\ReportBundle\Document\Report" collection="san_report" repository-class="San\ReportBundle\Repository\ReportRepository">
         <indexes>
             <index>
                 <key name="created" order="desc" />
