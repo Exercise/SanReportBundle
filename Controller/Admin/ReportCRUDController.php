@@ -34,4 +34,24 @@ class ReportCRUDController extends CRUDController
             'action' => 'list',
         ));
     }
+
+    /**
+     * Returns data for graph
+     *
+     * @return Response
+     * @throws AccessDeniedException
+     */
+    public function dataAction()
+    {
+        if (false === $this->admin->isGranted('LIST')) {
+            throw new AccessDeniedException();
+        }
+
+        $data = array();
+        for ($i = 1; $i <= 60; $i++) {
+            $data[] = array(strtotime('-' . (65 - $i) . ' days'), rand(50,100));
+        }
+
+        return $this->renderJson($data);
+    }
 }
