@@ -4,7 +4,7 @@ namespace San\ReportBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 
-class ReportRepository extends Repository
+class ReportRepository extends DocumentRepository
 {
     /**
      * @param  string    $type
