@@ -3,7 +3,6 @@
     xmlns:doctrine="http://symfony.com/schema/dic/doctrine">
 
     <parameters>
-        <parameter key="san.plot_report_type.class">San\ReportBundle\Form\Type\PlotReportType</parameter>
         <parameter key="san.report_form_type.class">San\ReportBundle\Form\Type\ReportType</parameter>
         <parameter key="san.report_subscriber.class">San\ReportBundle\EventListener\ReportSubscriber</parameter>
         <parameter key="san.report.class">San\ReportBundle\Document\Report</parameter>
@@ -12,10 +11,6 @@
     </parameters>
 
     <services>
-        <service id="san.form.plot_report_type" class="%san.plot_report_type.class%">
-            <tag name="form.type" alias="plot_report" />
-        </service>
-
         <service id="san.form.report_form_type" class="%san.report_form_type.class%">
             <tag name="form.type" alias="report" />
         </service>
