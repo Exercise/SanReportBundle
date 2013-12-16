@@ -13,6 +13,11 @@ class Report extends Event
     protected $id;
 
     /**
+     * @var \FOS\UserBundle\Model\UserInterface
+     */
+    protected $user;
+
+    /**
      * @var \DateTime
      */
     protected $created;
@@ -38,6 +43,22 @@ class Report extends Event
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return \FOS\UserBundle\Model\UserInterface
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 
     /**

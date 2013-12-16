@@ -39,7 +39,7 @@ class PlotService
             $counts = $this->dm->getRepository($this->namespace)->countByReportDate($report, $plotModel->getFrom(), $plotModel->getTo());
             foreach ($counts['result'] as $count) {
                 $date = new \DateTime(sprintf('%s-%s-%s', $count['_id']['year'], $count['_id']['month'], $count['_id']['day']));
-                $data[] = array($date->getTimestamp(), $count['total']); //array($count->getCreated()->getTimestamp(), $count->getCreated()->);
+                $data[] = array($date->getTimestamp(), $count['total']);
             }
             $plotData[] = array(
                 'report' => $report->getType(),
