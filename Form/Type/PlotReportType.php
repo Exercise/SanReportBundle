@@ -14,8 +14,12 @@ class PlotReportType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('from', 'datetime')
-            ->add('to', 'datetime')
+            ->add('from', 'date', array(
+                'widget' => 'single_text',
+            ))
+            ->add('to', 'date', array(
+                'widget' => 'single_text',
+            ))
             ->add('reports', 'collection', array(
                 'type'         => 'report',
                 'allow_add'    => true,

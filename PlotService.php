@@ -3,7 +3,8 @@
 namespace San\ReportBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use San\ReportBundle\Model\Report;
+use San\ReportBundle\Form\Model\Plot;
+use San\ReportBundle\Repository\ReportRepository;
 
 class PlotService
 {
@@ -13,29 +14,39 @@ class PlotService
     protected $dm;
 
     /**
-     * @param ObjectManager $dm
+     * @var string
      */
-    public function __construct(ObjectManager $dm)
+    protected $namespace;
+
+    /**
+     * @param ObjectManager $dm
+     * @param string        $namespace
+     */
+    public function __construct(ObjectManager $dm, $namespace)
     {
         $this->dm = $dm;
+        $this->namespace = $namespace;
     }
 
     /**
-     * @param  Report $reportModel
+     * @param  Plot $plotModel
      */
-    public function getData(Report $reportModel)
+    public function getData(Plot $plotModel)
     {
         $plotData = array();
-        foreach ($reportModel->getReports() as $report) {
+        foreach ($plotModel->getReports() as $report) {
             $data = array();
-            $reports = $this->dm->getRepository('SanReportBundle:Report')
-                ->countByTypeDate($report->getType(), $reportModel->getFrom(), $reportModel->getTo());
-            // foreach ($reports as $report) {
-            // }
+            $counts = $this->dm->getRepository($this->namespace)->countByReportDate($report, $plotModel->getFrom(), $plotModel->getTo());
+            foreach ($counts['result'] as $count) {
+                $date = new \DateTime(sprintf('%s-%s-%s', $count['_id']['year'], $count['_id']['month'], $count['_id']['day']));
+                $data[] = array($date->getTimestamp(), $count['total']); //array($count->getCreated()->getTimestamp(), $count->getCreated()->);
+            }
             $plotData[] = array(
-                'report' => $filter->getType(),
-                'data'   => array()
+                'report' => $report->getType(),
+                'data'   => $data,
             );
         }
+
+        return $plotData;
     }
 }

@@ -8,6 +8,7 @@
         <parameter key="san.report_subscriber.class">San\ReportBundle\EventListener\ReportSubscriber</parameter>
         <parameter key="san.report.class">San\ReportBundle\Document\Report</parameter>
         <parameter key="san.plot_service.class">San\ReportBundle\PlotService</parameter>
+        <parameter key="san.report_repository.namespace">SanReportBundle:Report</parameter>
     </parameters>
 
     <services>
@@ -26,8 +27,8 @@
 
         <service id="san.plot_service" class="%san.plot_service.class%">
             <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+            <argument>%san.report_repository.namespace%</argument>
         </service>
-
     </services>
 
 </container>

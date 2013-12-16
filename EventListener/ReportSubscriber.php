@@ -38,6 +38,7 @@ class ReportSubscriber implements EventSubscriberInterface
      */
     public function onReportCreate(Report $report)
     {
+        $report->setType(ReportEvents::USER_REGISTRATION_REPORT);
         $report->updateFilters();
         $this->dm->persist($report);
 

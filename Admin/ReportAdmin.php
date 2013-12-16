@@ -30,6 +30,8 @@ class ReportAdmin extends Admin
             ->remove('create')
             ->remove('delete')
             ->remove('update')
+            ->remove('batch')
+            ->add('data')
         ;
     }
 }

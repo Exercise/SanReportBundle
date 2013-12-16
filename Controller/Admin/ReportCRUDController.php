@@ -25,7 +25,9 @@ class ReportCRUDController extends CRUDController
         $form = $this->createForm('plot_report', $plot);
         $form->handleRequest($this->get('request'));
         if ($form->isValid()) {
-            $data = $this->get('san.plot_service')->getData($form->get('reports')->getData());
+            $data = $this->get('san.plot_service')->getData($plot);
+
+            return $this->renderJson($data);
         }
 
         return $this->render('SanReportBundle:Admin:report.html.twig', array(
