@@ -27,11 +27,6 @@ class Report extends Event
      */
     protected $type;
 
-    /**
-     * @var \FOS\UserBundle\Model\UserInterface
-     */
-    protected $user;
-
     public function __construct()
     {
         $this->created = new \DateTime();
@@ -56,7 +51,7 @@ class Report extends Event
     /**
      * @param User $user
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
     }
@@ -93,24 +88,6 @@ class Report extends Event
     public function setType($type)
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * @return \FOS\UserBundle\Model\UserInterface
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param UserInterface $user
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
 
         return $this;
     }
