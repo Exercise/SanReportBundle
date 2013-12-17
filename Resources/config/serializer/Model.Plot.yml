@@ -9,4 +9,4 @@ San\ReportBundle\Model\Plot:
             type: DateTime<'Y-m-d'>
         reports:
             expose: true
-            type: array<San\ReportBundle\Model\Report>
+            type: array<San\ReportBundle\Document\Report>

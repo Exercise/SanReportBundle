@@ -6,6 +6,7 @@
         <parameter key="san.admin.report.class">San\ReportBundle\Admin\ReportAdmin</parameter>
         <parameter key="san.admin.report.label">Registration report</parameter>
         <parameter key="san.admin.report.report_label">Reports</parameter>
+        <parameter key="san.admin.report_crud_controller.class">SanReportBundle:Admin/ReportCRUD</parameter>
     </parameters>
 
     <services>
@@ -14,7 +15,7 @@
             <tag name="sonata.admin" manager_type="doctrine_mongodb" group="%san.admin.report.report_label%" label="%san.admin.report.label%"/>
             <argument />
             <argument>San\ReportBundle\Document\Report</argument>
-            <argument>SanReportBundle:Admin/ReportCRUD</argument>
+            <argument>%san.admin.report_crud_controller.class%</argument>
         </service>
 
     </services>
