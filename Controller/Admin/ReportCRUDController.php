@@ -43,11 +43,8 @@ class ReportCRUDController extends CRUDController
             throw new AccessDeniedException();
         }
 
-        $data = array();
-        for ($i = 1; $i <= 60; $i++) {
-            $data[] = array(strtotime('-' . (65 - $i) . ' days'), rand(50,100));
-        }
+        $data = $this->get('san.plot_service')->getData($plot);
 
-        return $this->renderJson(array(0 => $data));
+        return $this->renderJson($data);
     }
 }
