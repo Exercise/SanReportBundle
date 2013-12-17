@@ -2,6 +2,8 @@
 
 namespace San\ReportBundle\Controller\Admin;
 
+use San\ReportBundle\Model\Plot;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -33,8 +35,9 @@ class ReportCRUDController extends CRUDController
      *
      * @return Response
      * @throws AccessDeniedException
+     * @ParamConverter("plot", class="San\ReportBundle\Model\Plot", converter="fos_rest.request_body")
      */
-    public function dataAction(Request $request)
+    public function dataAction(Request $request, Plot $plot)
     {
         if (false === $this->admin->isGranted('LIST')) {
             throw new AccessDeniedException();

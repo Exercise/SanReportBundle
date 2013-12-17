@@ -1,0 +1,12 @@
+San\ReportBundle\Model\Plot:
+    exclusion_policy: ALL
+    properties:
+        from:
+            expose: true
+            type: DateTime<'Y-m-d'>
+        to:
+            expose: true
+            type: DateTime<'Y-m-d'>
+        reports:
+            expose: true
+            type: array<San\ReportBundle\Model\Report>

@@ -31,7 +31,7 @@ class ReportAdmin extends Admin
             ->remove('delete')
             ->remove('update')
             ->remove('batch')
-            ->add('data')
+            ->add('data', null, array(), array('_format' => 'json'))
         ;
     }
 }

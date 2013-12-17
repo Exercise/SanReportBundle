@@ -1,0 +1,6 @@
+San\ReportBundle\Model\Report:
+    exclusion_policy: ALL
+    properties:
+        type:
+            expose: true
+            type: string
