@@ -27,8 +27,9 @@ class Report extends Event
      */
     protected $type;
 
-    public function __construct()
+    public function __construct($type)
     {
+        $this->type = $type;
         $this->created = new \DateTime();
     }
 

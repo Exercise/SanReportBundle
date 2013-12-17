@@ -3,6 +3,7 @@
 namespace San\ReportBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use FOS\UserBundle\Model\UserInterface;
 use San\ReportBundle\Model\Report;
 
 class ReportRepository extends DocumentRepository
@@ -30,6 +31,45 @@ class ReportRepository extends DocumentRepository
                 'total' => array('$sum' => 1)
             ))
         ));
+    }
+
+    /**
+     * @param  string        $type
+     * @param  UserInterface $user
+     * @return \San\ReportBundle\Document\Report
+     */
+    public function findOneByTypeUser($type, UserInterface $user)
+    {
+        return $this
+            ->createQueryBuilder('report')
+            ->field('type')->equals($type)
+            ->field('user.$id')->equals(new \MongoId($user->getId()))
+            ->getQuery()
+            ->getSingleResult()
+        ;
+    }
+
+    /**
+     * @param  string        $type
+     * @param  UserInterface $user
+     * @param  \DateTime     $created
+     * @return \San\ReportBundle\Document\Report
+     */
+    public function findOneByTypeUserCreated($type, UserInterface $user, \DateTime $created)
+    {
+        $start = clone $created;
+        $start->setTime(0, 0, 0);
+        $end = clone $created;
+        $end->setTime(23, 59, 59);
+
+        return $this
+            ->createQueryBuilder('report')
+            ->field('type')->equals($type)
+            ->field('user.$id')->equals(new \MongoId($user->getId()))
+            ->field('created')->range($start, $end)
+            ->getQuery()
+            ->getSingleResult()
+        ;
     }
 
     /**

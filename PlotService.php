@@ -3,7 +3,7 @@
 namespace San\ReportBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use San\ReportBundle\Form\Model\Plot;
+use San\ReportBundle\Model\Plot;
 use San\ReportBundle\Repository\ReportRepository;
 
 class PlotService
