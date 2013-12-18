@@ -18,7 +18,13 @@ class ReportRepository extends DocumentRepository
     {
         $qb = $this->getByTypeCreatedQuery($report->getType(), $from, $to);
         $collection = $this->dm->getDocumentCollection(get_class($report))->getMongoCollection();
-        $filters = $this->getReportFilters($report, array('type' => $report->getType()));
+        $filters = $this->getReportFilters($report, array(
+            'type' => $report->getType(),
+            'created' => array(
+                '$gte' => new \MongoDate($from->getTimestamp()),
+                '$lte' => new \MongoDate($to->getTimestamp()),
+            )
+        ));
 
         return $collection->aggregate(array(
             array('$match' => $filters),
