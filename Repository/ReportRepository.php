@@ -26,7 +26,21 @@ class ReportRepository extends DocumentRepository
             )
         ));
 
-        return $collection->aggregate(array(
+        $filledData = array('result' => array());
+        $diff = $to->diff($from);
+        $date = clone $from;
+        for ($i = 0; $i < $diff->days; $i++) {
+            $date->add(new \DateInterval('P1D'));
+            $filledData['result'][] = array(
+                '_id' => array(
+                    'year'  => $date->format('Y'),
+                    'month' => $date->format('m'),
+                    'day'   => $date->format('d')
+                ),
+                'total' => 0
+            );
+        }
+        $rawData = $collection->aggregate(array(
             array('$match' => $filters),
             array('$group' => array(
                 '_id' => array(
@@ -37,6 +51,22 @@ class ReportRepository extends DocumentRepository
                 'total' => array('$sum' => 1)
             ))
         ));
+
+        $result = array('result' => array());
+        foreach ($filledData['result'] as $key => $value) {
+            foreach ($rawData['result'] as $rawDataValue) {
+                if (($rawDataValue['_id']['year'] == $value['_id']['year']) &&
+                    ($rawDataValue['_id']['month'] == $value['_id']['month']) &&
+                    ($rawDataValue['_id']['day'] == $value['_id']['day'])) {
+                    $result['result'][$key] = $rawDataValue;
+                }
+            }
+            if (!isset($result['result'][$key])) {
+                $result['result'][$key] = $value;
+            }
+        }
+
+        return $result;
     }
 
     /**
