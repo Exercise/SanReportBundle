@@ -38,8 +38,8 @@ class PlotService
             $data = array();
             $counts = $this->dm->getRepository($this->namespace)->countByReportDate($report, $plotModel->getFrom(), $plotModel->getTo());
             foreach ($counts['result'] as $count) {
-                $date = new \DateTime(sprintf('%s-%s-%s', $count['_id']['year'], $count['_id']['month'], $count['_id']['day']));
-                $data[] = array($date->getTimestamp(), $count['total']);
+                $date = new \DateTime(sprintf('%s/%s/%s', $count['_id']['month'], $count['_id']['day'], $count['_id']['year']));
+                $data[] = array($date, $count['total']);
             }
             $plotData[] = array(
                 'report' => $report->getType(),
