@@ -16,6 +16,11 @@ class ReportRepository extends DocumentRepository
      */
     public function countByReportDate(Report $report, \DateTime $from, \DateTime $to)
     {
+        $utc = new \DateTimeZone('UTC');
+        $from->setTimezone($utc);
+        $from->setTime(0, 0, 0);
+        $to->setTimezone($utc);
+        $to->setTime(23, 59, 59);
         $qb = $this->getByTypeCreatedQuery($report->getType(), $from, $to);
         $collection = $this->dm->getDocumentCollection(get_class($report))->getMongoCollection();
         $filters = $this->getReportFilters($report, array(
@@ -29,8 +34,7 @@ class ReportRepository extends DocumentRepository
         $filledData = array('result' => array());
         $diff = $to->diff($from);
         $date = clone $from;
-        for ($i = 0; $i < $diff->days; $i++) {
-            $date->add(new \DateInterval('P1D'));
+        for ($i = 0; $i <= $diff->days; $i++) {
             $filledData['result'][] = array(
                 '_id' => array(
                     'year'  => $date->format('Y'),
@@ -39,6 +43,7 @@ class ReportRepository extends DocumentRepository
                 ),
                 'total' => 0
             );
+            $date->add(new \DateInterval('P1D'));
         }
         $rawData = $collection->aggregate(array(
             array('$match' => $filters),
@@ -49,6 +54,11 @@ class ReportRepository extends DocumentRepository
                     'day'   => array('$dayOfMonth' => '$created')
                 ),
                 'total' => array('$sum' => 1)
+            )),
+            array('$sort' => array(
+                '_id.year'  => 1,
+                '_id.month' => 1,
+                '_id.day'   => 1,
             ))
         ));
 
