@@ -2,7 +2,7 @@
 
 namespace San\ReportBundle;
 
-final class ReportEvents
+class ReportEvents
 {
     /**
      * @var string
