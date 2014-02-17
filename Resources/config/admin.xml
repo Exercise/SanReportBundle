@@ -4,7 +4,7 @@
 
     <parameters>
         <parameter key="san.admin.report.class">San\ReportBundle\Admin\ReportAdmin</parameter>
-        <parameter key="san.admin.report.label">Registration report</parameter>
+        <parameter key="san.admin.report.label">Dynamic reports</parameter>
         <parameter key="san.admin.report.report_label">Reports</parameter>
         <parameter key="san.admin.report_crud_controller.class">SanReportBundle:Admin/ReportCRUD</parameter>
     </parameters>
