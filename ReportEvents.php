@@ -22,11 +22,6 @@ class ReportEvents
     /**
      * @var string
      */
-    const PROFILE_REPORT = 'profile.report';
-
-    /**
-     * @var string
-     */
     const TRACK_FOOD_REPORT = 'track.food.report';
 
     /**
@@ -52,7 +47,6 @@ class ReportEvents
         return array(
             self::ACTIVE_USER_REPORT       => 'Active user report',
             self::EXERCISED_REPORT         => 'Exercised report',
-            self::PROFILE_REPORT           => 'Profile report',
             self::TRACK_FOOD_REPORT        => 'Track food report',
             self::TRACK_GLUCOSE_REPORT     => 'Track glucose report',
             self::TRACK_WEIGHT_REPORT      => 'Track weight report',
