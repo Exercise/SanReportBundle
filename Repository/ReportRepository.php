@@ -16,12 +16,8 @@ class ReportRepository extends DocumentRepository
      */
     public function countByReportDate(Report $report, \DateTime $from, \DateTime $to)
     {
-        $utc = new \DateTimeZone('UTC');
-        $from->setTimezone($utc);
         $from->setTime(0, 0, 0);
-        $to->setTimezone($utc);
         $to->setTime(23, 59, 59);
-        $qb = $this->getByTypeCreatedQuery($report->getType(), $from, $to);
         $collection = $this->dm->getDocumentCollection(get_class($report))->getMongoCollection();
         $filters = $this->getReportFilters($report, array(
             'type' => $report->getType(),
