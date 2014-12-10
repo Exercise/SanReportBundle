@@ -15,7 +15,7 @@ class ReportRepository extends DocumentRepository
      * @return \Doctrine\ODM\MongoDB\LoggableCursor
      */
     public function countByReportDate(Report $report, \DateTime $from, \DateTime $to)
-    {;
+    {
         $from->setTime(0, 0, 0);
         $to->setTime(23, 59, 59);
         $collection = $this->dm->getDocumentCollection(get_class($report))->getMongoCollection();
