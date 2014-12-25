@@ -27,49 +27,30 @@ class ReportRepository extends DocumentRepository
             )
         ));
 
-        $filledData = array('result' => array());
+        $reportData = [];
+        $cursor = $collection->find($filters)->sort(['created' => 1]);
+        foreach ($cursor as $row) {
+            $key = date('Ymd', $row['created']->sec);
+            if (!isset($reportData[$key])) {
+                $reportData[$key] = 0;
+            }
+            $reportData[$key] += 1;
+        }
+
+        $result = array('result' => array());
         $diff = $to->diff($from);
         $date = clone $from;
         for ($i = 0; $i <= $diff->days; $i++) {
-            $filledData['result'][] = array(
+            $key = $date->format('Ymd');
+            $result['result'][] = array(
                 '_id' => array(
                     'year'  => $date->format('Y'),
                     'month' => $date->format('m'),
                     'day'   => $date->format('d')
                 ),
-                'total' => 0
+                'total' => isset($reportData[$key]) ? $reportData[$key] : 0
             );
             $date->add(new \DateInterval('P1D'));
-        }
-        $rawData = $collection->aggregate(array(
-            array('$match' => $filters),
-            array('$group' => array(
-                '_id' => array(
-                    'year'  => array('$year' => '$created'),
-                    'month' => array('$month' => '$created'),
-                    'day'   => array('$dayOfMonth' => '$created')
-                ),
-                'total' => array('$sum' => 1)
-            )),
-            array('$sort' => array(
-                '_id.year'  => 1,
-                '_id.month' => 1,
-                '_id.day'   => 1,
-            ))
-        ));
-
-        $result = array('result' => array());
-        foreach ($filledData['result'] as $key => $value) {
-            foreach ($rawData['result'] as $rawDataValue) {
-                if (($rawDataValue['_id']['year'] == $value['_id']['year']) &&
-                    ($rawDataValue['_id']['month'] == $value['_id']['month']) &&
-                    ($rawDataValue['_id']['day'] == $value['_id']['day'])) {
-                    $result['result'][$key] = $rawDataValue;
-                }
-            }
-            if (!isset($result['result'][$key])) {
-                $result['result'][$key] = $value;
-            }
         }
 
         return $result;
